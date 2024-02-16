@@ -13,7 +13,7 @@ const corsOptions = {
     credentials: true // 
   };
 
-mongoose.connect("mongodb+srv://admin:yoni123123@cluster0.y6dy5.mongodb.net/Marketplace?retryWrites=true&w=majority");
+mongoose.connect(process.env.MONGODB_URI);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

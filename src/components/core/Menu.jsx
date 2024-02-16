@@ -63,9 +63,9 @@ const Menu = ({ history }) => {
           )}
           {auth.isAuthenticated() && (
             <span>
-              {auth.isAuthenticated().user.educator && (
-                <Link to="/teach/courses">
-                  <Button style={isParActive(history, "/teach/")}>
+              {auth.isAuthenticated().user.seller && (
+                <Link to="/seller/shops">
+                  <Button style={isParActive(history, "/seller/")}>
                     <LocalLibrary />
                     Teach
                   </Button>

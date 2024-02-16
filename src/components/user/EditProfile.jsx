@@ -41,8 +41,8 @@ const sxStyle = {
 
 const EditProfile = () => {
     let { userId } = useParams()
-    console.log("EditProfile Component: " + userId)
-    const [userID, setUserID] = useState(userId || undefined)
+
+    const [userID, setUserID] = useState(userId || '')
 
     const [values, setValues] = useState({
         name: '',
@@ -51,7 +51,7 @@ const EditProfile = () => {
         open: false,
         error: '',
         redirectToProfile: false,
-        educator: false
+        seller: false
     });
 
     const jwt = auth.isAuthenticated();
@@ -67,7 +67,7 @@ const EditProfile = () => {
             if (data && data.error) {
                 setValues({ ...values, error: data.error })
             } else {
-                setValues({ ...values, name: data.name, email: data.email, educator: data.educator })
+                setValues({ ...values, name: data.name, email: data.email, seller: data.seller || false })
             }
         })
 
@@ -78,10 +78,10 @@ const EditProfile = () => {
 
     const clickSubmit = () => {
         const user = {
-            name: values.name || undefined,
-            email: values.email || undefined,
-            password: values.password || undefined,
-            educator: values.educator
+            name: values.name || '',
+            email: values.email || '',
+            password: values.password || '',
+            seller: values.seller || undefined
         }
 
         update({
@@ -100,11 +100,11 @@ const EditProfile = () => {
     };
 
     const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value })
+        setValues({ ...values, [name]: event.target.value || '' })
     }
 
-    const handleCheck = (event, checked) => {
-        setValues({ ...values, 'educator': checked })
+    const handleCheck = ( event, checked) => {
+        setValues({ ...values, 'seller': checked })
     }
 
     if (values.redirectToProfile) {
@@ -129,7 +129,7 @@ const EditProfile = () => {
                     <TextField sx={sxStyle.textField} id="password" label="Password" value={values.password || ''} onChange={handleChange('password')} />
                     <br />
                     <Typography variant="subtitle1" >
-                        I am an Educator
+                        Seller Account
                     </Typography>
                     <FormControlLabel
                         control={
@@ -138,11 +138,11 @@ const EditProfile = () => {
                                 //     checked: classes.checked,
                                 //     bar: classes.bar,
                                 // }}
-                                checked={values.educator}
+                                checked={values.seller}
                                 onChange={handleCheck}
                             />
                         }
-                        label={values.educator ? 'Yes' : 'No'}
+                        label={values.seller ? 'Active' : 'Inactive'}
                     />
                     {
                         values.error && (
