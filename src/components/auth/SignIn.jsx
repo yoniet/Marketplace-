@@ -95,7 +95,6 @@ const SignIn = () => {
                     values.error &&
                     (
                         <Typography component="p" color="error">
-                            <Icon color="error" sx={sxStyle.error}>error</Icon>
                             <br />
                             {values.error}
                         </Typography>

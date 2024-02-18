@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { auth } from "../auth/auth-helper";
 import { useNavigate } from "react-router-dom";
-import { LocalLibrary } from "@mui/icons-material";
+import { LocalLibrary, StorefrontOutlined } from "@mui/icons-material";
 
 const isActive = (history, path) => {
   if (history === path) {
@@ -66,8 +66,8 @@ const Menu = ({ history }) => {
               {auth.isAuthenticated().user.seller && (
                 <Link to="/seller/shops">
                   <Button style={isParActive(history, "/seller/")}>
-                    <LocalLibrary />
-                    Teach
+                    <StorefrontOutlined sx={{paddingRight: '4px'}} />
+                    Shop
                   </Button>
                 </Link>
               )}

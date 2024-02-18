@@ -77,6 +77,7 @@ const EditProfile = () => {
     }, [userID])
 
     const clickSubmit = () => {
+        console.log("in submit")
         const user = {
             name: values.name || '',
             email: values.email || '',

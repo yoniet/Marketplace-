@@ -40,9 +40,7 @@ const Home = () => {
   
     return (
         <div style={sxStyle.extraTop}>
-            <Card sx={sxStyle.card}>
 
-            </Card>
         </div>
     )
 }
